@@ -76,21 +76,26 @@
 	   <img src="image/me_cartoon.png" class="img_cartoon center" alt="Cartoon avatar">
 	   
 	   <p class="font_3 center" style="margin-top: -40px;">Excited to hear from you!</p>
-	   <p class="font_3 center" style="font-size: 13px;">1. What comes to your mind when you hear Soubhi and 2019?</p>
-	   <p class="font_3 center" style="font-size: 13px;">2. What do you expect and advise Soubhi for 2020?</p>
+	   <p class="font_3 center" style="font-size: 13px;">1. What comes to your mind about our time working together?</p>
+	   <p class="font_3 center" style="font-size: 13px;">2. What feedback or advice would you like to share?</p>
 	   <p class="font_3 center" style="font-size: 13px;">Just say what's in your mind. Feel free to mention your name or leave it anonymous.</p>
 	   <p class="font_3 center">Thank you!</p>
 	   
 	   <p class="font_3 center">سلام للجميع، متشوق لسماع نصائحكم وآرائكم.</p>
-	   <p class="font_3 center" style="font-size: 13px;">ماذا تحب أن تذكر عن صبحي في 2019 تود ذكر أي نصيحة له لعام 2020 :)</p>
+	   <p class="font_3 center" style="font-size: 13px;">ماذا تحب أن تذكر عن صبحي وأي نصيحة تود مشاركتها معه :)</p>
 	   <p class="font_3 center" style="font-size: 13px;">تستطيع ذكر ما تريد سواءً بشكل خفي أو مع الاسم بآخر الرسالة</p>
 	   <p class="font_3 center">شكراً وأتمنى لك عام سعيد</p>
 	   
-	   <div class="center" style="width: 50%;">
-	       <textarea id="message_textarea" class="center" rows="5" cols="50" placeholder="Your message :)"></textarea>
-	   </div>
-	   
-	   <button class="center" id="btn">Send | إرسال</button>
+	   <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" style="width: 50%; margin: 0 auto;">
+	       <!-- Replace with your actual Web3Forms access key -->
+	       <input type="hidden" name="access_key" value="149808bc-b46d-4fef-9def-f7db8a169fe2">
+	       <input type="hidden" name="subject" value="New message from Tell ME page">
+	       <input type="hidden" name="from_name" value="Tell ME Page Visitor">
+	       
+	       <textarea name="message" id="message_textarea" class="center" rows="5" cols="50" placeholder="Your message :)" required></textarea>
+	       
+	       <button type="submit" class="center" id="btn">Send | إرسال</button>
+	   </form>
 	   
 	   <div style="height: 30px;"></div>
 
@@ -101,9 +106,42 @@
 
 
     <script>
-        $('#btn').click(function() {
-            const msg = "This feature is currently disabled.";
-            M.toast({ html: msg, classes: 'rounded' });
+        $(document).ready(function() {
+            $('#contact-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                const message = $('#message_textarea').val().trim();
+                if (!message) {
+                    M.toast({ html: 'Please enter a message', classes: 'rounded red' });
+                    return false;
+                }
+                
+                // Show sending message
+                M.toast({ html: 'Sending message...', classes: 'rounded blue' });
+                
+                // Submit form via AJAX
+                const formData = new FormData(this);
+                
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        M.toast({ html: 'Message sent successfully! Thank you!', classes: 'rounded green' });
+                        $('#message_textarea').val(''); // Clear textarea
+                    } else {
+                        M.toast({ html: 'Failed to send message. Please try again.', classes: 'rounded red' });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    M.toast({ html: 'An error occurred. Please try again.', classes: 'rounded red' });
+                });
+                
+                return false;
+            });
         });
     </script>
 </body>
