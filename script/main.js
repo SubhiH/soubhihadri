@@ -205,9 +205,33 @@ $(document).ready(function(){
          });
      });
 
-   // Since we are removing the backend, we can't get events anymore.
-   // This can be replaced with a static events.json file in the future.
-   first_event_page_downloaded=true;
+   $.getJSON("events.json", function(data) {
+       var eventsHtml = '';
+       $.each(data, function(key, event) {
+           eventsHtml += '<div class="event">';
+           eventsHtml += '<div class="event_block">';
+           eventsHtml += '<img class="event_img" src="image/' + event[2] + '">';
+           eventsHtml += '<br/>';
+           eventsHtml += '<div class="event_title">';
+           eventsHtml += '<p style="color:#777D85;margin-left: 10px;font-family: \'Roboto\', sans-serif;">';
+           eventsHtml += event[0];
+           eventsHtml += '</p>';
+           eventsHtml += '</div>';
+           eventsHtml += '</div>';
+           eventsHtml += '<div class="event_arrow"></div>';
+
+           if (event[1].length > 5) {
+               eventsHtml += '<div class="event_date" style="font-size: 9px;">';
+           } else {
+               eventsHtml += '<div class="event_date">';
+           }
+           eventsHtml += event[1];
+           eventsHtml += '</div>';
+           eventsHtml += '</div>';
+       });
+       $('.events').append(eventsHtml);
+       first_event_page_downloaded = true;
+   });
 
 
    animateDiv();
