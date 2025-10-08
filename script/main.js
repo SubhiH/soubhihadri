@@ -58,7 +58,7 @@ function showDivs(n) {
                     projectsHtml += '#' + project.type_title;
                     projectsHtml += '</p>';
 
-                    projectsHtml += '<img src="work/' + project.img_url + '" width="100%" style="height:250px;object-fit: contain;">';
+                    projectsHtml += '<img src="./work/' + project.img_url + '" width="100%" style="height:250px;object-fit: contain;">';
 
                     projectsHtml += '<p class="font_3" style="font-size: 13px;margin-top: 5px;font-weight: 500;">';
                     projectsHtml += project.title;
@@ -105,7 +105,7 @@ function showDivs(n) {
                             var modalContent = '<div style="text-align: center;font-size: 16px;color: #b13938;font-family: \'Quicksand\', sans-serif;font-weight: 500;">' + project.title + '</div>';
                             modalContent += '<div class="w3-content w3-display-container" style="max-width:800px">';
                             project.images.forEach(function(image) {
-                                modalContent += '<img class="focused_img" src="work/' + project.folder_name + '/' + image + '" style="width:100%">';
+                                modalContent += '<img class="focused_img" src="./work/' + project.folder_name + '/' + image + '" style="width:100%">';
                             });
                             modalContent += '</div>';
                             modalContent += '<div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">';
@@ -210,7 +210,7 @@ $(document).ready(function(){
        $.each(data, function(key, event) {
            eventsHtml += '<div class="event">';
            eventsHtml += '<div class="event_block">';
-           eventsHtml += '<img class="event_img" src="image/' + event[2] + '">';
+           eventsHtml += '<img class="event_img" src="./image/' + event[2] + '">';
            eventsHtml += '<br/>';
            eventsHtml += '<div class="event_title">';
            eventsHtml += '<p style="color:#777D85;margin-left: 10px;font-family: \'Roboto\', sans-serif;">';
