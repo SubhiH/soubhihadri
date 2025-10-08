@@ -1,75 +1,98 @@
-<?php header('Content-Type: text/html; charset=utf-8'); php?>
 <!DOCTYPE html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leave a Message - Soubhi Hadri</title>
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125849148-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125849148-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-125849148-1');
+    </script>
 
-	  gtag('config', 'UA-125849148-1');
-	</script>
+	   <!-- jQuery -->
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	   <!-- Bootstrap -->
+	   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js"></script>
-	<!-- fonts-->
-	<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Flavors|Nanum+Brush+Script|Pacifico|Shadows+Into+Light" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Quicksand:300,400,500|Titillium+Web" rel="stylesheet">
-	<!-- Materialize -->
-	<!-- Compiled and minified CSS -->
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
-	<!-- Compiled and minified JavaScript -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="css/materialize.min.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<!-- Compiled and minified JavaScript -->
-	<script src="script/materialize.min.js"></script>
-	<title>Soubhi Hadri</title>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	   <!-- Materialize -->
+	   <link rel="stylesheet" href="css/materialize.min.css">
+	   <link rel="stylesheet" href="css/main.css">
+	   <script src="script/materialize.min.js"></script>
 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	   <!-- Fonts -->
+	   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Quicksand:300,400,500|Titillium+Web" rel="stylesheet">
+	   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	   
+	   <!-- Favicon -->
+	   <link rel="shortcut icon" type="image/x-icon" href="image/icon.png">
 
-           <link rel="shortcut icon" type="image/x-icon" href="image/icon.png" />
+	   <style>
+	       .img_cartoon {
+	           width: 350px;
+	           margin-top: 50px;
+	       }
 
-	
+	       .center {
+	           display: block;
+	           margin: 0 auto;
+	       }
 
+	       .font_3 {
+	           font-size: 15px;
+	       }
+
+	       #message_textarea {
+	           margin: 10px;
+	           background: white;
+	           height: 100px;
+	       }
+
+	       #btn {
+	           background: #2b85c5;
+	           color: white;
+	           padding: 6px;
+	           border-radius: 7px;
+	           margin-bottom: 52px;
+	           margin-top: 20px;
+	           border: none;
+	           cursor: pointer;
+	       }
+
+	       #btn:hover {
+	           background: #236a9f;
+	       }
+	   </style>
 </head>
 
 <body>
-
-
-
-	<img src="image/me_cartoon.png" class="img_cartoon center">
-	<p class="font_3 center" style="margin-top: -40px;">Excited to hear from you!:</p>
-	<p class="font_3 center" style="font-size: 13px;">1. What does come to your mind when you hear Soubhi and 2019?</p>
-	<p class="font_3 center" style="font-size: 13px;">2. What do you expect and advise Soubhi for 2020?</p>
-	<p class="font_3 center" style="font-size: 13px;">Just say what's in your mind. Feel free to mention your name or leave it anonymous.</p>
-	<p class="font_3 center">Thank you!</p>
-	
-	<p class="font_3 center"> سلام للجميع, مُتشوق لسماع نصائحكم و أرائكم .</p>
-	<p class="font_3 center" style="font-size: 13px;">ماذا تحب أن تذكر عن صبحي في  2019 تود ذكر أي نصيحة له لعام 2020 :)</p>
-	<p class="font_3 center" style="font-size: 13px;">تستطيع ذكر ما تريد سواءً بشكل خفي أو مع الاسم بأخر الرسالة</p>
-	<p class="font_3 center">شكراً و اتمنى لك عام سعيد</p>
-	
-	
-	<div class="center" style="width: 50%;">
-		<textarea id="message_textarea" class="center" rows="5" cols="50" placeholder="Your message :)"></textarea>
-	</div>
-	
-	<button class="center" id="btn">Send | إرسال</button>
-	
-	<div style="height:30px;"></div>
+	   <img src="image/me_cartoon.png" class="img_cartoon center" alt="Cartoon avatar">
+	   
+	   <p class="font_3 center" style="margin-top: -40px;">Excited to hear from you!</p>
+	   <p class="font_3 center" style="font-size: 13px;">1. What comes to your mind when you hear Soubhi and 2019?</p>
+	   <p class="font_3 center" style="font-size: 13px;">2. What do you expect and advise Soubhi for 2020?</p>
+	   <p class="font_3 center" style="font-size: 13px;">Just say what's in your mind. Feel free to mention your name or leave it anonymous.</p>
+	   <p class="font_3 center">Thank you!</p>
+	   
+	   <p class="font_3 center">سلام للجميع، متشوق لسماع نصائحكم وآرائكم.</p>
+	   <p class="font_3 center" style="font-size: 13px;">ماذا تحب أن تذكر عن صبحي في 2019 تود ذكر أي نصيحة له لعام 2020 :)</p>
+	   <p class="font_3 center" style="font-size: 13px;">تستطيع ذكر ما تريد سواءً بشكل خفي أو مع الاسم بآخر الرسالة</p>
+	   <p class="font_3 center">شكراً وأتمنى لك عام سعيد</p>
+	   
+	   <div class="center" style="width: 50%;">
+	       <textarea id="message_textarea" class="center" rows="5" cols="50" placeholder="Your message :)"></textarea>
+	   </div>
+	   
+	   <button class="center" id="btn">Send | إرسال</button>
+	   
+	   <div style="height: 30px;"></div>
 
 	
 
@@ -77,48 +100,11 @@
 
 
 
+    <script>
+        $('#btn').click(function() {
+            const msg = "This feature is currently disabled.";
+            M.toast({ html: msg, classes: 'rounded' });
+        });
+    </script>
 </body>
-
-
 </html>
-
-<script>
-$('#btn').click(function(){
-    var msg = "This feature is currently disabled.";
-    M.toast({html: msg, classes: 'rounded'});
-});
-	
-
-	
-</script>
-
-<style>
-.img_cartoon{
-    width: 350px;
-    margin-top: 50px;
-}
-
-.center{
-    display: block;
-    margin: 0 auto;
-}
-.font_3{
-font-size: 15px;
-}
-
-#message_textarea{
-    margin: 10px;    
-    background:white;
-    height: 100px;
-}
-
-#btn{
-    background: #2b85c5;
-    color: white;
-    padding: 6px;
-    border-radius: 7px;
-    margin-bottom: 52px;
-    margin-top: 20px;
-}
-
-</style>

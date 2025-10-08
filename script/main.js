@@ -1,39 +1,40 @@
+// Application State
 var slideIndex = 1;
+var works_loaded = false;
+var presentations_loaded = false;
+var toast_is_shown = false;
+var events_loaded = false;
+var first_event_page_downloaded = false;
+
+// Slideshow Functions
 function plusDivs(n) {
-  showDivs(slideIndex += n);
+    showDivs(slideIndex += n);
 }
 
 function currentDiv(n) {
-  showDivs(slideIndex = n);
+    showDivs(slideIndex = n);
 }
 
 function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("focused_img");
-  if (n > x.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = x.length}
-          for (i = 0; i < x.length; i++) {
-           x[i].style.display = "none";  
-       }
+    var x = document.getElementsByClassName("focused_img");
+    if (n > x.length) { slideIndex = 1; }
+    if (n < 1) { slideIndex = x.length; }
+    
+    for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[slideIndex - 1].style.display = "block";
+}
 
-       x[slideIndex-1].style.display = "block";  
-   }
-
-   var works_loaded = false;
-   var presentations_loaded = false;
-   var toast_is_shown = false;
-   var events_loaded=false;
-   var first_event_page_downloaded = false;
-
-   function yHandler(){
-
+// Scroll Handler
+function yHandler() {
     var wrap = document.getElementById('skillss');
     var contentHeight = wrap.offsetHeight;
-    var yOffset = window.pageYOffset; 
+    var yOffset = window.pageYOffset;
     var y = yOffset + window.innerHeight;
-        // console.log(y);
-        if(y >= contentHeight && !works_loaded){
-            works_loaded=true;
+    
+    if (y >= contentHeight && !works_loaded) {
+        works_loaded = true;
 
             $.getJSON("projects.json", function(data) {
                 var projectsHtml = '';
@@ -125,230 +126,159 @@ function showDivs(n) {
             });
         }
 
-        if(y >= 2000 && works_loaded && !presentations_loaded){
-            presentations_loaded=true;
-        // Ajax call to get more dynamic data goes here
-        // This section is now obsolete as we are not using a backend.
-        // Presentation data can be loaded from a static file in the future if needed.
-        
+    if (y >= 2000 && works_loaded && !presentations_loaded) {
+        presentations_loaded = true;
     }
 
-    if(y>800 && !events_loaded && first_event_page_downloaded){
-        events_loaded=true;
-        // This section is now obsolete as we are not using a backend.
-        // Event data can be loaded from a static file in the future if needed.
+    if (y > 800 && !events_loaded && first_event_page_downloaded) {
+        events_loaded = true;
     }
 }
 window.onscroll = yHandler;
 
 
-$(document).ready(function(){
+// Utility Functions
+function smoothScrollTo(target) {
+    $('html, body').animate({
+        scrollTop: $(target).offset().top
+    }, 'slow');
+}
 
-    $("#close").click(function(){
-      $("#news").fadeOut();
+// Document Ready
+$(document).ready(function() {
+    // Close news banner
+    $("#close").click(function() {
+        $("#news").fadeOut();
     });
 
-
-    $('#work_btn').click(function(){
-        $('html,body').animate({
-            scrollTop: $("#project_container").offset().top},
-            'slow');
+    // Navigation buttons
+    $('#work_btn').click(function() {
+        smoothScrollTo("#project_container");
     });
 
-    $('#contact_btn').click(function(){
-        if(!toast_is_shown){
-            toast_is_shown=true;
-            M.toast({html: '<span>Excited to hear from you ^_^</span><br><span style="font-size: 13px;"><a href="mailto:soubhi.hadri@gmail.com">soubhi.hadri@gmail.com</a></span> <br><span style="font-size: 13px;"><a href="mailto:soubhi.hadri@gmail.com">s.hadri@ou.edu</a></span><br><span style="font-size: 13px;">Find Me</span><br><i class="material-icons">arrow_downward</i>',
-               classes: 'toast',
-               completeCallback:function(){
-                toast_is_shown=false;
-            }
-        });
+    $('#contact_btn').click(function() {
+        if (!toast_is_shown) {
+            toast_is_shown = true;
+            M.toast({
+                html: '<span>Excited to hear from you ^_^</span><br>' +
+                      '<span style="font-size: 13px;"><a href="mailto:soubhi.hadri@gmail.com">soubhi.hadri@gmail.com</a></span><br>' +
+                      '<span style="font-size: 13px;">Find Me</span><br>' +
+                      '<i class="material-icons">arrow_downward</i>',
+                classes: 'toast',
+                completeCallback: function() {
+                    toast_is_shown = false;
+                }
+            });
         }
     });
 
-    $('#course_btn').click(function(){
-        $('html,body').animate({
-            scrollTop: $("#courses").offset().top},
-            'slow');
+    $('#course_btn').click(function() {
+        smoothScrollTo("#courses");
     });
 
-    $('#presentation_btn').click(function(){
-        $('html,body').animate({
-            scrollTop: $("#presentation").offset().top},
-            'slow');
-    });  
+    $('#presentation_btn').click(function() {
+        smoothScrollTo("#presentation");
+    });
 
-   // $('.modal').modal();
-   $('.carousel').carousel();
+    $('.carousel').carousel();
 
-   $('.a').hover(
+    // Floating menu hover effect
+    $('.a').hover(
+        function() {
+            $('.a #ulEle').css({ display: 'block' });
+            $('.a #ulEle').animate({ left: '20px' }, 100);
+        },
+        function() {
+            $('.a #ulEle').animate({ left: '0' }, 100, function() {
+                $('.a #ulEle').css({ display: 'none' });
+            });
+        }
+    );
 
-     function () {
-         $('.a #ulEle').css({
-             display: 'block'
-         });
-         $('.a #ulEle').animate({
-             left: '20px',
-             background: '#ccc'
-         }, 100);
-     },
-
-     function () {
-         $('.a #ulEle').animate({
-             left: '0',
-             background: '#ccc'
-         }, 100, function () {
-             $('.a #ulEle').css({
-                 display: 'none'
-             });
-         });
-     });
-
-   $.getJSON("events.json", function(data) {
-       var eventsHtml = '';
-       $.each(data, function(key, event) {
-           eventsHtml += '<div class="event">';
-           eventsHtml += '<div class="event_block">';
-           eventsHtml += '<img class="event_img" src="./image/' + event[2] + '">';
-           eventsHtml += '<br/>';
-           eventsHtml += '<div class="event_title">';
-           eventsHtml += '<p style="color:#777D85;margin-left: 10px;font-family: \'Roboto\', sans-serif;">';
-           eventsHtml += event[0];
-           eventsHtml += '</p>';
-           eventsHtml += '</div>';
-           eventsHtml += '</div>';
-           eventsHtml += '<div class="event_arrow"></div>';
-
-           if (event[1].length > 5) {
-               eventsHtml += '<div class="event_date" style="font-size: 9px;">';
-           } else {
-               eventsHtml += '<div class="event_date">';
-           }
-           eventsHtml += event[1];
-           eventsHtml += '</div>';
-           eventsHtml += '</div>';
-       });
-       $('.events').append(eventsHtml);
-       first_event_page_downloaded = true;
-   });
+    // Load events timeline
+    $.getJSON("events.json", function(data) {
+        var eventsHtml = '';
+        $.each(data, function(key, event) {
+            var fontSize = event[1].length > 5 ? 'style="font-size: 9px;"' : '';
+            eventsHtml += '<div class="event">' +
+                         '<div class="event_block">' +
+                         '<img class="event_img" src="./image/' + event[2] + '"><br/>' +
+                         '<div class="event_title">' +
+                         '<p style="color:#777D85;margin-left:10px;font-family:\'Roboto\',sans-serif;">' +
+                         event[0] + '</p></div></div>' +
+                         '<div class="event_arrow"></div>' +
+                         '<div class="event_date" ' + fontSize + '>' + event[1] + '</div>' +
+                         '</div>';
+        });
+        $('.events').append(eventsHtml);
+        first_event_page_downloaded = true;
+    });
 
 
-   animateDiv();
+    // Initialize floating menu animation
+    animateDiv();
 
-   list = [['HTML', 8],
-   ['Javascript', 8],
-   ['PHP', 9],
-   ['Python', 10],
-   ['C++', 12],
-   ['OpenCV', 13],
-   ['Point Cloud Library', 8],
-   ['Computer Vision', 13],
-   ['Deep Learning', 11],
-   ['Machine Learning', 11],
-   ['Drone Software Development', 9],
-   ['Ardupilot', 12],
-   ['PX4', 12],
-   ['iOS', 13],
-   ['Android', 13],
-   ['React Native', 12],
-   ['OpenGL', 13],
-   ['WebGL', 13],
-   ['Mavlink', 12],
-   ['Keras', 10],
-   ['Tensorflow', 10],
-   ['Threejs', 9],
-   ['Web Dev', 12],
-   ['Mobile Dev', 12],
-   ['OpenCVJS', 12],
-   ['C#', 7],
-   ['Swift', 8],
-   ['Git', 8],
-   ['Java', 8],
-   ['Joomla', 7],
-   ['ROS', 11],
-   ['Qt', 13]]
-   WordCloud(document.getElementById('skills'), { list: list,
-      gridSize: 8,
-      weightFactor: 3,
-      fontFamily: 'Quicksand, sans-serif',
-      fontWeight:function (word, weight,fontSize) {
-        if (weight > 12){
-            return 400;
-        }else if(weight > 10){
-         return 400;
-     }else{
-        return 500;
-    }
-},
-color: function (word, weight) {
-    if (weight > 12){
-        return '#75272A';
-    }else if(weight > 10){
-     return '#B13938';
- }else if(weight > 8){
-     return '#566270';
- }else if(weight > 7){
-     return '#848FAA';
- }else{
-    return '#848FAA';
-}
-},
-hover: window.drawBox,
-backgroundColor: '#ff000000' } );
-
-
+    // Skills word cloud
+    $.getJSON("skills.json", function(skillsList) {
+        WordCloud(document.getElementById('skills'), {
+            list: skillsList,
+            gridSize: 8,
+            weightFactor: 3,
+            fontFamily: 'Quicksand, sans-serif',
+            fontWeight: function(word, weight, fontSize) {
+                return (weight > 10) ? 400 : 500;
+            },
+            color: function(word, weight) {
+                if (weight > 12) return '#75272A';
+                if (weight > 10) return '#B13938';
+                if (weight > 8) return '#566270';
+                return '#848FAA';
+            },
+            hover: window.drawBox,
+            backgroundColor: '#ff000000'
+        });
+    });
 });
 
-function makeNewPosition(){
-
-    // Get viewport dimensions (remove the dimension of the div)
+// Animation Helper Functions
+function makeNewPosition() {
     var h = $(window).height() - 50;
     var w = $(window).width() - 50;
-    
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-    
-    return [nh,nw];    
-    
+    return [nh, nw];
 }
 
-function animateDiv(){
+function calcSpeed(prev, next) {
+    var x = Math.abs(prev[1] - next[1]);
+    var y = Math.abs(prev[0] - next[0]);
+    var greatest = x > y ? x : y;
+    var speedModifier = 0.1;
+    return Math.ceil(greatest / speedModifier);
+}
+
+function animateDiv() {
     var hover = false;
     var newq = makeNewPosition();
     var oldq = $('.a').offset();
     var speed = calcSpeed([oldq.top, oldq.left], newq);
     
-    $('.a').animate({ top: newq[0], left: newq[1] }, speed, function(){
-        if(!hover){
-            animateDiv();        
+    $('.a').animate({ top: newq[0], left: newq[1] }, speed, function() {
+        if (!hover) {
+            animateDiv();
         }
     });
 
-    $('.a').hover(function() {
-        hover = true;
-        $('.a').stop();
-    }, function(){
-        hover = false;
-        animateDiv();
-    });
-
-
-};
-
-function calcSpeed(prev, next) {
-
-    var x = Math.abs(prev[1] - next[1]);
-    var y = Math.abs(prev[0] - next[0]);
-    
-    var greatest = x > y ? x : y;
-    
-    var speedModifier = 0.1;
-
-    var speed = Math.ceil(greatest/speedModifier);
-
-    return speed;
-
+    $('.a').hover(
+        function() {
+            hover = true;
+            $('.a').stop();
+        },
+        function() {
+            hover = false;
+            animateDiv();
+        }
+    );
 }
 
 
