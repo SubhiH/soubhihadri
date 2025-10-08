@@ -288,7 +288,7 @@
 
 			function addMyProjSection(pro_data,font){
 				let index = 0;
-				base_url = "";
+				
 				///sec 1 my work
 				var newTexture = new THREE.TextureLoader().load('work/'+pro_data[index]["folder_name"]+'/base.png');
 				index++;
@@ -1479,7 +1479,7 @@
 						}
 						//console.log(intersects_[ 0 ].object);
 						pro_data[proj_id]["curr"] = index;
-						base_url = "";
+						
 						var newTexture = new THREE.TextureLoader().load('work/'+pro_data[proj_id]["folder_name"]+"/"+pro_data[proj_id]["images"][index]);
 						// newTexture = new THREE.TextureLoader().load('certificates/cer_1.png');
 						if (intersects_[ 0 ].object.material.length>1){
