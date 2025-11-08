@@ -6,6 +6,60 @@ var toast_is_shown = false;
 var events_loaded = false;
 var first_event_page_downloaded = false;
 
+// Mobile Toggle Functionality
+function initMobileToggle() {
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+    const timelineSection = document.getElementById('timelineSection');
+    const contentSection = document.getElementById('contentSection');
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const section = this.getAttribute('data-section');
+            
+            // Remove active class from all buttons
+            toggleButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Toggle sections
+            if (section === 'timeline') {
+                timelineSection.classList.add('active');
+                contentSection.classList.add('hidden');
+            } else {
+                timelineSection.classList.remove('active');
+                contentSection.classList.remove('hidden');
+            }
+        });
+    });
+    
+    // Optional: Swipe gesture support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    function handleSwipe() {
+        if (window.innerWidth <= 992) { // Only on mobile
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left - show timeline
+                document.querySelector('[data-section="timeline"]').click();
+            }
+            if (touchEndX > touchStartX + 50) {
+                // Swipe right - show content
+                document.querySelector('[data-section="content"]').click();
+            }
+        }
+    }
+    
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    document.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+}
+
 // Slideshow Functions
 function plusDivs(n) {
     showDivs(slideIndex += n);
@@ -769,6 +823,7 @@ $(document).ready(function() {
     initPerlinWave();
     initPerlinWaveHeader();
     initTokenStream();
+    initMobileToggle();
 });
 
 

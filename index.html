@@ -194,15 +194,27 @@
     </div>
 
     <!-- Main Content Grid -->
-    <div class="uk-grid">
-        <div class="uk-width-medium-2-6 events"></div>
+    <div class="uk-grid" id="mainGrid">
+        <!-- Mobile Toggle Bar (only visible on mobile) -->
+        <div class="mobile-toggle-bar">
+            <button class="toggle-btn active" data-section="content">
+                <i class="material-icons">work</i>
+                <span>Content</span>
+            </button>
+            <button class="toggle-btn" data-section="timeline">
+                <i class="material-icons">timeline</i>
+                <span>Timeline</span>
+            </button>
+        </div>
 
-        <div class="uk-width-medium-4-6 main-content-area" style="background-color: #DFE4EA; position: relative;">
+        <div class="uk-width-medium-2-6 events" id="timelineSection"></div>
+
+        <div class="uk-width-medium-4-6 main-content-area" id="contentSection" style="background-color: #DFE4EA; position: relative;">
             <!-- Perlin Wave Background Canvas - Full right area including header -->
             <canvas id="perlinWaveCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
             
-            <!-- Header Section -->
-            <div class="uk-grid main-header-section" style="padding: 20px 20px 20px 10px; position: relative;">
+            <!-- Header Section (full width on mobile) -->
+            <div class="uk-grid main-header-section" id="headerSection" style="padding: 20px 20px 20px 10px; position: relative;">
 			             <!-- Perlin Wave in Header -->
 			             <canvas id="perlinWaveHeaderCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
 			             <!-- Token Stream Canvas -->
@@ -210,6 +222,7 @@
 			             
 			             <div class="uk-width-medium-2-3" style="position: relative; z-index: 3;">
 			                 <p class='font_1'>Hi, I'm</p>
+							 <br>
 			                 <p class="font_2"><span style="color: #AA3B3B;">S</span>oubhi <span style="color: #AA3B3B;">H</span>adri</p>
 			                 <p class="font_3">Senior GenAI Specialist | Data Scientist</p>
 			                 <div style="font-size: 10px;">
@@ -626,8 +639,31 @@
 		      </div>
 		  </div>
 
-		  <!-- Contact Section -->
-		  <div class="contact">
+		  <!-- Mobile Footer (combines contact + copyright, only visible on mobile) -->
+		  <div class="mobile-footer">
+		      <div class="mobile-footer-content">
+		          <div class="mobile-social">
+		              <span>Find Me on:</span>
+		              <div class="mobile-social-icons">
+		                  <a href="https://github.com/SubhiH" target="_blank">
+		                      <img class="social_icon" src="image/github.png" alt="GitHub">
+		                  </a>
+		                  <a href="https://www.linkedin.com/in/soubhihadri/" target="_blank">
+		                      <img class="social_icon" src="image/linked.png" alt="LinkedIn">
+		                  </a>
+		                  <a href="https://www.facebook.com/Soubhi.Hadri" target="_blank">
+		                      <img class="social_icon" src="image/fb.png" alt="Facebook">
+		                  </a>
+		              </div>
+		          </div>
+		          <div class="mobile-copyright">
+		              © Copyright 2026 Soubhi Hadri.
+		          </div>
+		      </div>
+		  </div>
+
+		  <!-- Contact Section (hidden on mobile) -->
+		  <div class="contact desktop-only">
 		      Find Me on:
 		      <a href="https://github.com/SubhiH" target="_blank">
 		          <img class="social_icon" src="image/github.png" alt="GitHub">
@@ -640,8 +676,8 @@
 		      </a>
 		  </div>
 
-		  <!-- Copyright -->
-		  <div id="copy_right">© Copyright 2026 Soubhi Hadri.</div>
+		  <!-- Copyright (hidden on mobile) -->
+		  <div id="copy_right" class="desktop-only">© Copyright 2026 Soubhi Hadri.</div>
 
 		  <script>
 		      $(document).ready(function() {
