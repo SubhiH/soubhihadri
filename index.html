@@ -197,10 +197,18 @@
     <div class="uk-grid">
         <div class="uk-width-medium-2-6 events"></div>
 
-        <div class="uk-width-medium-4-6 main-content-area" style="background-color: #DFE4EA">
+        <div class="uk-width-medium-4-6 main-content-area" style="background-color: #DFE4EA; position: relative;">
+            <!-- Perlin Wave Background Canvas - Full right area including header -->
+            <canvas id="perlinWaveCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+            
             <!-- Header Section -->
-            <div class="uk-grid main-header-section" style="background-color: #EEF2F4; padding: 20px 20px 20px 10px; background-image: url(image/pattern.png);">
-			             <div class="uk-width-medium-2-3">
+            <div class="uk-grid main-header-section" style="padding: 20px 20px 20px 10px; position: relative;">
+			             <!-- Perlin Wave in Header -->
+			             <canvas id="perlinWaveHeaderCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+			             <!-- Token Stream Canvas -->
+			             <canvas id="tokenStreamCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2;"></canvas>
+			             
+			             <div class="uk-width-medium-2-3" style="position: relative; z-index: 3;">
 			                 <p class='font_1'>Hi, I'm</p>
 			                 <p class="font_2"><span style="color: #AA3B3B;">S</span>oubhi <span style="color: #AA3B3B;">H</span>adri</p>
 			                 <p class="font_3">Senior GenAI Specialist | Data Scientist</p>
@@ -219,7 +227,7 @@
 			                     </span>
 			                 </div>
 			             </div>
-			             <div class="uk-width-medium-1-3">
+			             <div class="uk-width-medium-1-3" style="position: relative; z-index: 3;">
 			                 <div class="box">
 			                     <img src="image/me.jpg" class="personal_img" alt="Soubhi Hadri">
 			                 </div>

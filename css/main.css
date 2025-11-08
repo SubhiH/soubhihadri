@@ -822,6 +822,48 @@ a:visited {
     transform: scale(1.15) rotate(5deg);
 }
 
+/* Load More Button for Projects */
+.load-more-button {
+    background: var(--gradient-ai-primary);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--shadow);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.load-more-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.load-more-button:active {
+    transform: translateY(0);
+}
+
+/* Project batch animation */
+.project-batch {
+    animation: fadeInProjects 0.6s ease forwards;
+}
+
+@keyframes fadeInProjects {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 
 
