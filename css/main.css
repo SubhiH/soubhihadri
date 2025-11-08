@@ -1008,6 +1008,11 @@ a:visited {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Hide mobile-only elements on desktop */
+.mobile-footer {
+    display: none;
+}
+
 /* Mobile Responsive Styles */
 @media only screen and (max-width: 992px) {
     /* Show toggle bar on mobile */
@@ -1241,6 +1246,20 @@ a:visited {
         padding: 20px 0 !important;
         width: 100% !important;
         margin: 0 auto !important;
+    }
+
+    /* Skills section centering on mobile */
+    #skills {
+        width: 100% !important;
+        margin: 30px auto 0 !important;
+        padding: 0 10px !important;
+        display: block !important;
+    }
+
+    #skillss {
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 10px !important;
     }
 
     .event {
