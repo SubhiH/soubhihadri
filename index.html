@@ -3,7 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Soubhi Hadri - Data Scientist</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Soubhi Hadri - Senior GenAI Specialist | AI/ML Expert | Google</title>
+    <meta name="title" content="Soubhi Hadri - Senior GenAI Specialist | AI/ML Expert">
+    <meta name="description" content="Senior GenAI Specialist at Google with expertise in LLMs, AI Agents, Generative AI, and Machine Learning. Specialized in RAG, Prompt Engineering, and MLOps. Previously at Microsoft, Shiseido, and University of Oklahoma.">
+    <meta name="keywords" content="GenAI, LLM, AI Agents, Generative AI, Machine Learning, Deep Learning, NLP, Computer Vision, RAG, Prompt Engineering, MLOps, Python, PyTorch, Langchain, OpenAI, GCP, Azure, Data Science">
+    <meta name="author" content="Soubhi Hadri">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soubhihadri.com/">
+    <meta property="og:title" content="Soubhi Hadri - Senior GenAI Specialist | AI/ML Expert">
+    <meta property="og:description" content="Senior GenAI Specialist at Google with expertise in LLMs, AI Agents, Generative AI, and Machine Learning. Transforming AI ideas into real-world solutions.">
+    <meta property="og:image" content="https://soubhihadri.com/image/me.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://soubhihadri.com/">
+    <meta property="twitter:title" content="Soubhi Hadri - Senior GenAI Specialist | AI/ML Expert">
+    <meta property="twitter:description" content="Senior GenAI Specialist at Google with expertise in LLMs, AI Agents, Generative AI, and Machine Learning.">
+    <meta property="twitter:image" content="https://soubhihadri.com/image/me.jpg">
+    
+    <!-- LinkedIn -->
+    <meta property="og:site_name" content="Soubhi Hadri - Portfolio">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://soubhihadri.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="image/favicon.png">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125849148-1"></script>
@@ -37,6 +68,42 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Quicksand:300,400,500|Titillium+Web|Roboto:100" rel="stylesheet">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Soubhi Hadri",
+      "jobTitle": "Senior GenAI Specialist",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Google"
+      },
+      "url": "https://soubhihadri.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/soubhihadri",
+        "https://github.com/SubhiH"
+      ],
+      "knowsAbout": [
+        "Generative AI",
+        "Large Language Models",
+        "AI Agents",
+        "Machine Learning",
+        "Deep Learning",
+        "Natural Language Processing",
+        "Computer Vision",
+        "Retrieval Augmented Generation",
+        "Prompt Engineering",
+        "MLOps"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Jordan"
+      },
+      "description": "Senior GenAI Specialist at Google with expertise in LLMs, AI Agents, Generative AI, Machine Learning, and MLOps"
+    }
+    </script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -62,6 +129,27 @@
     </style>
 </head>
 <body>
+	   <!-- Scroll Progress Indicator -->
+	   <div id="scroll-progress"></div>
+	   
+	   <!-- Theme Toggle Button -->
+	   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+	       <svg id="sunIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	           <circle cx="12" cy="12" r="5"/>
+	           <line x1="12" y1="1" x2="12" y2="3" stroke="white" stroke-width="2"/>
+	           <line x1="12" y1="21" x2="12" y2="23" stroke="white" stroke-width="2"/>
+	           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="white" stroke-width="2"/>
+	           <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="white" stroke-width="2"/>
+	           <line x1="1" y1="12" x2="3" y2="12" stroke="white" stroke-width="2"/>
+	           <line x1="21" y1="12" x2="23" y2="12" stroke="white" stroke-width="2"/>
+	           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="white" stroke-width="2"/>
+	           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="white" stroke-width="2"/>
+	       </svg>
+	       <svg id="moonIcon" style="display: none;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="white" stroke-width="2" fill="white"/>
+	       </svg>
+	   </button>
+	   
 	   <!-- Floating Menu -->
 	   <div class='a'>
 	       <img src="image/drone.gif" width="100" height="400" style="z-index: 100;" alt="Drone animation">
@@ -101,7 +189,7 @@
     <div id="news">
         <div>
             <span id="close"></span>
-            <span id="news_content">Let's talk about LLM 😉</span>
+            <span id="news_content">Let's talk about Agents 😉</span>
         </div>
     </div>
 
@@ -109,13 +197,13 @@
     <div class="uk-grid">
         <div class="uk-width-medium-2-6 events"></div>
 
-        <div class="uk-width-medium-4-6" style="background-color: #DFE4EA">
+        <div class="uk-width-medium-4-6 main-content-area" style="background-color: #DFE4EA">
             <!-- Header Section -->
-            <div class="uk-grid" style="background-color: #EEF2F4; padding: 20px 20px 20px 10px; background-image: url(image/pattern.png);">
+            <div class="uk-grid main-header-section" style="background-color: #EEF2F4; padding: 20px 20px 20px 10px; background-image: url(image/pattern.png);">
 			             <div class="uk-width-medium-2-3">
 			                 <p class='font_1'>Hi, I'm</p>
 			                 <p class="font_2"><span style="color: #AA3B3B;">S</span>oubhi <span style="color: #AA3B3B;">H</span>adri</p>
-			                 <p class="font_3">Data Scientist</p>
+			                 <p class="font_3">Senior GenAI Specialist | Data Scientist</p>
 			                 <div style="font-size: 10px;">
 			                     <span style="color: #7B7F89;">soubhi.hadri@gmail.com -</span>
 			                     <span style="color: #ac3a38;">
@@ -143,7 +231,7 @@
 			             <span class="info_title">ABOUT ME</span>
 			             <span class="info_icon"><img src="image/me.png" alt="About icon"></span>
 			         </div>
-			         <p style="color: #777D85; margin-left: 35px; font-family: 'Quicksand', sans-serif; font-weight: 400; padding-right: 20px;">
+			         <p class="about-me-text">
 			             Experienced data scientist with a strong background in software engineering and data science, passionate about AI/ML and LLM. Proven track record in delivering innovative solutions at the intersection of technology and data science. Committed to staying current with the latest advancements in AI/ML and LLM.
 			         </p>
 
@@ -545,7 +633,7 @@
 		  </div>
 
 		  <!-- Copyright -->
-		  <div id="copy_right">© Copyright 2023 Soubhi Hadri.</div>
+		  <div id="copy_right">© Copyright 2026 Soubhi Hadri.</div>
 
 		  <script>
 		      $(document).ready(function() {

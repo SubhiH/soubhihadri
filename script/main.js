@@ -204,7 +204,7 @@ $(document).ready(function() {
                          '<div class="event_block">' +
                          '<img class="event_img" src="./image/' + event[2] + '"><br/>' +
                          '<div class="event_title">' +
-                         '<p style="color:#777D85;margin-left:10px;font-family:\'Roboto\',sans-serif;">' +
+                         '<p class="event-title-text">' +
                          event[0] + '</p></div></div>' +
                          '<div class="event_arrow"></div>' +
                          '<div class="event_date" ' + fontSize + '>' + event[1] + '</div>' +
@@ -280,6 +280,172 @@ function animateDiv() {
         }
     );
 }
+
+// Dark Mode Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
+    
+    // Update icon based on current theme
+    if (currentTheme === 'dark') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    }
+    
+    // Toggle theme
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Toggle icons with animation
+        if (newTheme === 'dark') {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        } else {
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        }
+    });
+    
+    // Scroll Animations with Intersection Observer
+    initScrollAnimations();
+    
+    // Interactive Drone and Scroll Progress
+    initInteractiveDrone();
+});
+
+// Interactive Drone Animation
+function initInteractiveDrone() {
+    const drone = document.querySelector('div.a');
+    const scrollProgress = document.getElementById('scroll-progress');
+    
+    if (!drone || !scrollProgress) return;
+    
+    window.addEventListener('scroll', function() {
+        // Update scroll progress bar
+        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.pageYOffset / windowHeight) * 100;
+        scrollProgress.style.width = scrolled + '%';
+        
+        // Update drone position based on scroll
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = window.pageYOffset / maxScroll;
+        
+        // Calculate drone position (moves vertically with scroll)
+        // Keep it visible within viewport, range from 10% to 70% of viewport height
+        const minTop = window.innerHeight * 0.1;
+        const maxTop = window.innerHeight * 0.7;
+        const droneTop = minTop + (scrollPercent * (maxTop - minTop));
+        
+        drone.style.top = droneTop + 'px';
+    });
+    
+    // Set initial position
+    const initialTop = window.innerHeight * 0.1;
+    drone.style.top = initialTop + 'px';
+}
+
+// Scroll Animation Function
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: unobserve after animation to improve performance
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe info containers
+    const infoContainers = document.querySelectorAll('.info_container');
+    infoContainers.forEach(function(container, index) {
+        container.classList.add('fade-in-right');
+        if (index < 6) {
+            container.classList.add('stagger-' + (index + 1));
+        }
+        observer.observe(container);
+    });
+    
+    // Observe event blocks (timeline cards)
+    const observeEvents = function() {
+        const eventBlocks = document.querySelectorAll('.event');
+        eventBlocks.forEach(function(event, index) {
+            if (!event.classList.contains('fade-in-left')) {
+                event.classList.add('fade-in-left');
+                if (index < 6) {
+                    event.classList.add('stagger-' + ((index % 3) + 1));
+                }
+                observer.observe(event);
+            }
+        });
+    };
+    
+    // Observe initially and after new events load
+    setTimeout(observeEvents, 500);
+    setInterval(observeEvents, 2000);
+    
+    // Observe project cards
+    const observeProjects = function() {
+        const projectCards = document.querySelectorAll('.project');
+        projectCards.forEach(function(project, index) {
+            if (!project.classList.contains('scale-in')) {
+                project.classList.add('scale-in');
+                if (index < 6) {
+                    project.classList.add('stagger-' + ((index % 3) + 1));
+                }
+                observer.observe(project);
+            }
+        });
+    };
+    
+    // Check for projects periodically
+    setInterval(observeProjects, 2000);
+    
+    // Observe work sections
+    const workSections = document.querySelectorAll('.work_section');
+    workSections.forEach(function(section, index) {
+        section.classList.add('fade-in');
+        if (index < 6) {
+            section.classList.add('stagger-' + ((index % 2) + 1));
+        }
+        observer.observe(section);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
