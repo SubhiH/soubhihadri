@@ -524,5 +524,69 @@
             "3.JPG",
             "1.JPG"
         ]
+    },
+    {
+        "id": 23,
+        "title": "Emannest",
+        "detail": "Connecting the Muslim community<br>2025",
+        "img_url": "emannest/emannest.png",
+        "type_title": "Web #PHP #Laravel #React #NextJS",
+        "date": "2025-01-01",
+        "folder_name": "emannest",
+        "type": 1,
+        "priority": 25,
+        "enabled": 1,
+        "url": "https://www.emannest.com/",
+        "images": [
+            "emannest.png"
+        ]
+    },
+    {
+        "id": 24,
+        "title": "Malden Islamic Center",
+        "detail": "Community website for Malden Islamic Center.<br>2025",
+        "img_url": "mic/mic.png",
+        "type_title": "Web #PHP #React #NextJS",
+        "date": "2025-01-01",
+        "folder_name": "mic",
+        "type": 1,
+        "priority": 24,
+        "enabled": 1,
+        "url": "https://maldenislamiccenter.org/",
+        "images": [
+            "mic.png"
+        ]
+    },
+    {
+        "id": 25,
+        "title": "Sakinah Wellbeing",
+        "detail": "Healthcare and wellbeing services platform.<br>2025",
+        "img_url": "sakinah/sakinah.png",
+        "type_title": "Web #PHP",
+        "date": "2025-01-01",
+        "folder_name": "sakinah",
+        "type": 1,
+        "priority": 23,
+        "enabled": 1,
+        "url": "https://sakinahwellbeing.org/",
+        "images": [
+            "sakinah.png"
+        ]
+    },
+    {
+        "id": 26,
+        "title": "ShamReMedia",
+        "detail": "Media and content platform.<br>2025",
+        "img_url": "shamremedia/shamremedia.png",
+        "type_title": "Web #PHP",
+        "date": "2025-01-01",
+        "folder_name": "shamremedia",
+        "type": 1,
+        "priority": 22,
+        "enabled": 1,
+        "url": "https://shamremedia.com/",
+        "images": [
+            "shamremedia.png"
+        ]
     }
 ]

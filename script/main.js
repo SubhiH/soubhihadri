@@ -104,12 +104,56 @@ window.onscroll = yHandler;
 
 // Projects Load More Functionality
 var allProjects = [];
+var filteredProjects = [];
 var currentProjectIndex = 0;
 var projectsPerPage = 6;
+var currentFilter = 'all';
+
+// Classify project type based on content
+function classifyProject(project) {
+    var categories = [];
+    var typeTitle = project.type_title.toLowerCase();
+    var title = project.title.toLowerCase();
+    var detail = project.detail.toLowerCase();
+    
+    // AI/ML classification
+    if (typeTitle.includes('dl') || typeTitle.includes('ai') || typeTitle.includes('cv') || 
+        typeTitle.includes('nn') || typeTitle.includes('opengl') || 
+        title.includes('deep learning') || title.includes('neural') ||
+        detail.includes('deep learning') || detail.includes('ai') || detail.includes('neural') ||
+        title.includes('pills counter') || title.includes('hand gestures')) {
+        categories.push('ai');
+    }
+    
+    // Mobile classification
+    if (typeTitle.includes('ios') || typeTitle.includes('android') || 
+        typeTitle.includes('mobile') || title.includes('ios') || title.includes('android')) {
+        categories.push('mobile');
+    }
+    
+    // Web classification
+    if (typeTitle.includes('web') || typeTitle.includes('js') || 
+        title.includes('website') || title.includes('web') || typeTitle.includes('threejs')) {
+        categories.push('web');
+    }
+    
+    // If no category found, default to web if it has a URL or based on type
+    if (categories.length === 0) {
+        if (project.type === 1 || project.url) {
+            categories.push('web');
+        } else {
+            categories.push('mobile');
+        }
+    }
+    
+    return categories;
+}
 
 function loadProjects() {
     $.getJSON("projects.json", function(data) {
-        allProjects = data;
+        // Sort by priority descending
+        allProjects = data.sort((a, b) => b.priority - a.priority);
+        filteredProjects = allProjects;
         currentProjectIndex = 0;
         
         // Add load more button after project container
@@ -124,15 +168,40 @@ function loadProjects() {
         // Load first batch
         loadMoreProjects();
         
-        // Attach click handler
+        // Attach click handler for load more
         $('#load-more-projects-btn').click(function() {
+            loadMoreProjects();
+        });
+        
+        // Attach filter button handlers
+        $('.project-filter-btn').click(function() {
+            var filter = $(this).data('filter');
+            currentFilter = filter;
+            
+            // Update active state
+            $('.project-filter-btn').removeClass('active');
+            $(this).addClass('active');
+            
+            // Filter projects
+            if (filter === 'all') {
+                filteredProjects = allProjects;
+            } else {
+                filteredProjects = allProjects.filter(function(project) {
+                    var categories = classifyProject(project);
+                    return categories.includes(filter);
+                });
+            }
+            
+            // Reset and reload
+            currentProjectIndex = 0;
+            $('#project_container').empty();
             loadMoreProjects();
         });
     });
 }
 
 function loadMoreProjects() {
-    var projectsToShow = allProjects.slice(currentProjectIndex, currentProjectIndex + projectsPerPage);
+    var projectsToShow = filteredProjects.slice(currentProjectIndex, currentProjectIndex + projectsPerPage);
     var projectsHtml = '';
     var projectCount = 0;
     var startIndex = currentProjectIndex;
@@ -191,7 +260,7 @@ function loadMoreProjects() {
     currentProjectIndex += projectsToShow.length;
     
     // Update button
-    var remaining = allProjects.length - currentProjectIndex;
+    var remaining = filteredProjects.length - currentProjectIndex;
     if (remaining > 0) {
         $('#load-more-projects-btn').show();
     } else {

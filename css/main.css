@@ -919,6 +919,62 @@ a:visited {
     opacity: 0.8;
 }
 
+/* Project Filter Buttons */
+#project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.project-filter-btn {
+    background: var(--bg-secondary);
+    border: 2px solid rgba(139, 111, 71, 0.3);
+    border-radius: 25px;
+    padding: 12px 24px;
+    color: var(--text-title);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .project-filter-btn {
+    background: var(--bg-secondary);
+    border-color: rgba(184, 147, 95, 0.3);
+}
+
+.project-filter-btn i {
+    font-size: 20px;
+}
+
+.project-filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-secondary);
+}
+
+.project-filter-btn.active {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(42, 157, 143, 0.4);
+}
+
+.project-filter-btn.active i {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
 .contact a:hover .social_icon {
     transform: scale(1.15) rotate(5deg);
 }
@@ -1220,6 +1276,26 @@ a:visited {
     /* Adjust theme toggle button */
     .theme-toggle {
         top: 70px;
+    }
+
+    /* Project filter buttons on mobile */
+    #project-filters {
+        gap: 8px;
+        padding: 0 10px !important;
+    }
+
+    .project-filter-btn {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .project-filter-btn span {
+        display: none;
+    }
+
+    .project-filter-btn i {
+        font-size: 20px;
+        margin: 0;
     }
 
     /* Better text sizing on mobile */
